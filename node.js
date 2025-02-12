@@ -259,6 +259,7 @@ app.post('/login', async (req, res) => {
 
             if (req.body.password == user.password) {
                 req.session.userId = user.id;
+                req.session.login = req.body.login;
                 return res.render('index', { account: 'is', login: login })
             }
         })
@@ -272,7 +273,7 @@ app.get('/profile', (req, res) => {
     if (!req.session.userId) {
         res.render('index');
     }
-    fs.readFile(`users_info/${login}.JSON`, 'utf-8', (err, data) => {
+    fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
         if (err) {
             console.error(err);
         }
