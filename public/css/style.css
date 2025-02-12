@@ -194,7 +194,7 @@ header .container {
     max-width: 40%;
     height: auto;
     position: absolute;
-    bottom: -160px;
+    bottom: -60px;
     left: -820px;
     transition: .5s;
     z-index: -1;
