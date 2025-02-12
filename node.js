@@ -258,7 +258,7 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
     try {
         let sqlChecker = 'SELECT * FROM space WHERE login = ?';
-        db.query(sqlChecker, req.body.login, (err, result) => {
+        db.query(sqlChecker, [req.body.login], (err, result) => {
             if (err) {
                 return res.status(500).send('something went wrong during cheking the email');
             }
@@ -274,7 +274,7 @@ app.post('/login', async (req, res) => {
                 })
             }
 
-            if (password == user.password) {
+            if (req.body.password == user.password) {
                 req.session.userId = user.id;
                 return res.render('index', { account: 'is', login: login })
             }
