@@ -203,7 +203,7 @@ app.post('/register', async (req, res) => {
                 stars: starsArray,
             }
             const userInfoJson = JSON.stringify(userInfo, null, 2);
-            await fs.writeFile(`users_info/${login}.JSON`, userInfoJson, () => { })
+            await fs.writeFile(`users_info/${req.body.login}.JSON`, userInfoJson, () => { })
 
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
