@@ -273,8 +273,11 @@ app.post('/login', async (req, res) => {
                     message: 'Wrong password'
                 })
             }
-            req.session.userId = user.id;
-            return res.render('index', { account: 'is', login: login })
+
+            if (password == user.password) {
+                req.session.userId = user.id;
+                return res.render('index', { account: 'is', login: login })
+            }
         })
     }
     catch (e) {
