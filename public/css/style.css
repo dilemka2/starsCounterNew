@@ -191,12 +191,13 @@ header .container {
 }
 
 .info-img {
-    max-width: 50%;
+    max-width: 400px;
     height: auto;
     position: absolute;
-    bottom: -60px;
+    bottom: -160px;
     left: -800px;
     transition: .5s;
+    z-index: -1;
 }
 
 
