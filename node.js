@@ -256,6 +256,8 @@ app.post('/register', async (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
+    login = req.body.login;
+    pass = req.body.password;
     try {
         let sqlChecker = 'SELECT * FROM space WHERE login = ?';
         db.query(sqlChecker, [req.body.login], (err, result) => {
