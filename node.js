@@ -145,25 +145,6 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/profile', (req, res) => {
-    if (!req.session.userId) {
-        res.render('index');
-    }
-    fs.readFile(`users_info/${login}.JSON`, 'utf-8', (err, data) => {
-        if (err) {
-            console.error(err);
-        }
-        const profileData = JSON.parse(data);
-        res.render('profile', {
-            login: login,
-            description: profileData.des,
-            img: profileData.img,
-            account: 'is',
-            stars: profileData.stars,
-        });
-    })
-})
-
 app.get('/login', (req, res) => {
     res.render('login');
 })
@@ -285,6 +266,25 @@ app.post('/login', async (req, res) => {
     catch (e) {
         console.log(e);
     }
+})
+
+app.get('/profile', (req, res) => {
+    if (!req.session.userId) {
+        res.render('index');
+    }
+    fs.readFile(`users_info/${login}.JSON`, 'utf-8', (err, data) => {
+        if (err) {
+            console.error(err);
+        }
+        const profileData = JSON.parse(data);
+        res.render('profile', {
+            login: login,
+            description: profileData.des,
+            img: profileData.img,
+            account: 'is',
+            stars: profileData.stars,
+        });
+    })
 })
 
 let starsArray = [];
