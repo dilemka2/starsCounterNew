@@ -24,12 +24,6 @@ app.use(session({
     cookie: { secure: false }
 }))
 
-// const db = mysql.createConnection({
-//     host: process.env.DATABASE_HOST,
-//     user: process.env.DATABASE_USER,
-//     password: process.env.DATABASE_PASSWORD,
-//     database:process.env.DATABASE,
-// })
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -40,16 +34,6 @@ const db = mysql.createConnection({
     ssl: { rejectUnauthorized: false } // Вимкнути перевірку SSL, якщо потрібно
 });
 
-
-// db.connect((e) => {
-//     if (e) {
-//         console.log(e);
-//     }
-//     else {
-//         console.log('DataBase connected')
-
-//     }
-// })
 db.connect((err) => {
     if (err) {
         console.error("Помилка підключення:", err);
@@ -289,12 +273,8 @@ app.post('/login', async (req, res) => {
                     message: 'Wrong password'
                 })
             }
-
-            if (password == user.password) {
-                res.render('index', { account: 'is', login: login })
-                req.session.userId = user.id;
-                console.log('works')
-            }
+            req.session.userId = user.id;
+            return res.render('index', { account: 'is', login: login })
         })
     }
     catch (e) {
