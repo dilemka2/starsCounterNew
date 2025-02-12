@@ -336,7 +336,7 @@ app.post('/send-photo', upload.single('photo'), async (req, res) => {
     let imageGrey = await makingGrey(filePath);
     if (imageGrey) {
         const whiteObjectsCounter = await countWhiteObjects(imageGrey);
-        starsArray.push(whiteObjectsCounter);
+        starsArray.push(whiteObjectsCounter-1);
         fs.readFile(`users_info/${login}.JSON`, 'utf-8', (err, data) => {
             if (err) {
                 console.log(err)
