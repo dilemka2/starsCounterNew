@@ -41,7 +41,7 @@ document.getElementById('form').addEventListener('submit', async(e) => {
     formData.append('photo', file);
 
     try {
-        const response = await fetch('http://localhost:3030/send-photo', {
+        const response = await fetch('https://starscounternew-1.onrender.com/send-photo', {
             method: 'POST',
             body:formData,
         })
@@ -84,7 +84,7 @@ document.getElementById('profile-form').addEventListener('submit', async(e) => {
     formData.append('describsion', profileDesc);
     
     try {
-        const responseP = await fetch('http://localhost:3030/profile-update', {
+        const responseP = await fetch('https://starscounternew-1.onrender.com/profile-update', {
             method: 'POST',
             body: formData,
         });
