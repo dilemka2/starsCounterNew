@@ -1,3 +1,15 @@
+// making animation on main site
+
+const anImg = document.getElementsByClassName('info-img');
+const anBtn = document.querySelector('#AnBtn');
+anBtn.addEventListener('mouseenter', () => {
+    anImg.style.transform = 'translateX(0)';
+});
+
+anBtn.addEventListener('mouseleave', () => {
+    anImg.style.transform = 'translateX(1000px)';
+});
+
 // making warning/result
 let progressLine = document.querySelector('.progress-line');
 let progress = document.querySelector('.progress');
@@ -98,3 +110,4 @@ document.getElementById('profile-form').addEventListener('submit', async(e) => {
         console.log(e);
     }
 })
+
