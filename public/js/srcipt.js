@@ -1,6 +1,6 @@
 // making animation on main site
 
-const anImg = document.getElementsByClassName('info-img');
+const anImg = document.querySelector('.info-img');
 const anBtn = document.querySelector('#AnBtn');
 anBtn.addEventListener('mouseenter', () => {
     anImg.style.transform = 'translateX(0)';
