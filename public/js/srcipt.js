@@ -3,11 +3,11 @@
 const anImg = document.querySelector('.info-img');
 const anBtn = document.querySelector('#AnBtn');
 anBtn.addEventListener('mouseenter', () => {
-    anImg.style.transform = 'translateX(0)';
+    anImg.style.left = '0';
 });
 
 anBtn.addEventListener('mouseleave', () => {
-    anImg.style.transform = 'translateX(1000px)';
+    anImg.style.left = '-800px';
 });
 
 // making warning/result
