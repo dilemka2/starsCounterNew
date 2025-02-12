@@ -195,7 +195,7 @@ header .container {
     height: auto;
     position: absolute;
     bottom: -160px;
-    left: -800px;
+    left: -820px;
     transition: .5s;
     z-index: -1;
 }

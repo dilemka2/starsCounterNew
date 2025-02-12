@@ -7,7 +7,7 @@ anBtn.addEventListener('mouseenter', () => {
 });
 
 anBtn.addEventListener('mouseleave', () => {
-    anImg.style.left = '-800px';
+    anImg.style.left = '-820px';
 });
 
 // making warning/result
