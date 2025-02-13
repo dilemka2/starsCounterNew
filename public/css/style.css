@@ -105,9 +105,10 @@ header .container {
     z-index: 20;
     color: #BE7B72;
     right: 10px;
-    background-color: transparent;
     border: none;
     cursor: pointer;
+    background: #1d1616;
+    border-radius: 17px;
 }
 
 .header-li:hover .header-sub-ul {
