@@ -21,22 +21,21 @@ main {
     height: 100vh;
 }
 
+.astroPhoto-main section {
+    scroll-snap-align:none;
+}
+
 section {
     scroll-snap-align:start;
     position: relative;
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1085px;
     margin: 0 auto;
+    padding: 0 15px;
 }
-.transition {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-}
+
 
 header {
     background-color: #1D1616;
@@ -73,6 +72,15 @@ header .container {
     transform: scale(1.06);
 }
 
+
+.active {
+    background-color: #FDAF7B;
+}
+.header-ul {
+    display: flex;
+    gap: 10px;
+}
+
 .header-li {
     padding: 10px;
     cursor: pointer;
@@ -81,9 +89,10 @@ header .container {
 }
 
 .header-li:hover {
-    outline:2px solid #1D1616;
-    background-color: #4d3d3d;
+    outline: 2px solid #BE7B72;
+    background-color: #1d1616;
 }
+
 
 .header-li:hover .header-sub-ul {
     display: block;
@@ -93,7 +102,8 @@ header .container {
     width: 100%;
     top: 35px;
     left: 0;
-
+    outline: 2px solid #BE7B72;
+    background-color: #1d1616;
 }
 .header-sub-ul {
     display: none;
@@ -158,7 +168,7 @@ header .container {
 .welcome-section .container {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
     position: relative;
     top: 40px;
 }
@@ -190,6 +200,10 @@ header .container {
     margin-bottom: 50px;
 }
 
+.info-wrapper p {
+    text-align: justify;
+}
+
 .info-img {
     max-width: 40%;
     height: auto;
@@ -204,7 +218,11 @@ header .container {
 .info-wrapper h1 {
     color: #f5f5f5;
 }
-.info-wrapper h1 span {
+.info-wrapper h3 {
+    display: inline;
+}
+
+.info-wrapper h3 span {
     color: #FDAF7B;
 }
 
@@ -364,7 +382,7 @@ header .container {
 
 
 .login-register__block button {
-    height: 30px;
+    padding: 10px 0;
     background-color: #FDAF7B;
     color: #fff;
     border-radius: 15px;
@@ -410,7 +428,7 @@ header .container {
 
 .profile {
     display: flex;
-    flex-direction:column ;
+    justify-content: space-between;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -494,6 +512,87 @@ header .container {
     margin-top: 10px;
 }
 
+.profile-ul {
+    max-width: 400px;
+    height: 500px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+
+.profile-ul li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.profile-image {
+    width: 70%;
+    height: auto;
+}
+
+
+/* astropPhoto */
+
+.astropPhoto .container {
+    padding-top: 140px;
+}
+
+.astropPhoto-h1 {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.astropPhoto-h1::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    background-color:#FDAF7B;
+    width: 100%;
+    height: 2px;
+}
+
+.astropPhoto p {
+    line-height: 25px;
+    text-align: justify;
+}
+
+.astroPhoto-photo {
+    margin-top: 40px;
+    display: flex;
+    gap: 0px;
+    justify-content: space-evenly;
+}
+
+.astroPhoto-ul {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.astroPhoto-li {
+    width: 40%;
+}
+
+.astroPhoto-li img {
+    height: auto;
+    width: 100%;
+    border-radius: 25px;
+    margin-bottom: 10px;
+}
+
+.astroPhoto-li p {
+    text-align: center;
+    font-size: 12px;
+    font-style:italic;
+    margin-bottom: 20px;
+}
 @media (max-width:970px) {
     .profile-img {
         width: 60%;

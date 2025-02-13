@@ -144,7 +144,6 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
-
 app.get('/login', (req, res) => {
     res.render('login');
 })
@@ -160,6 +159,16 @@ app.get('/logout', async (req, res) => {
         }
         res.redirect('/');
     });
+})
+
+app.get('/astroPhoto', (req,res) => {
+    if(req.session.userId) {
+        res.render('astroPhoto', {
+            account:'is',
+            login:login
+        })
+    }
+    res.render('astroPhoto');
 })
 
 let login;
@@ -200,7 +209,8 @@ app.post('/register', async (req, res) => {
             const userInfo = {
                 img: 'uploads\\profile-img.webp',
                 des: 'Add Bio📝',
-                stars: starsArray,
+                arrayOfStars: starsArray,
+                arrayOfIMG: imgArray,
             }
             const userInfoJson = JSON.stringify(userInfo, null, 2);
             await fs.writeFile(`users_info/${req.body.login}.JSON`, userInfoJson, () => { })
@@ -235,7 +245,8 @@ app.post('/register', async (req, res) => {
         console.log(e);
     }
 })
-
+let imgArray = [];
+let starsArray = [];
 app.post('/login', async (req, res) => {
     login = req.body.login;
     pass = req.body.password;
@@ -256,7 +267,16 @@ app.post('/login', async (req, res) => {
                     message: 'Wrong password'
                 })
             }
-
+            fs.readFileSync(`users_info/${req.body.login+'.JSON'}`, 'utf-8', async(err,data) => {
+                if(err) {
+                    console.log(err);
+                }
+                const profileData =  await JSON.parse(data);
+                console.log(profileData, 'profile-data')
+                starsArray = [profileData.arrayOfStars];
+                imgArray = [profileData.arrayOfIMG];
+                console.log(starsArray);
+            })
             if (req.body.password == user.password) {
                 req.session.userId = user.id;
                 req.session.login = req.body.login;
@@ -268,12 +288,11 @@ app.post('/login', async (req, res) => {
         console.log(e);
     }
 })
-
 app.get('/profile', (req, res) => {
     if (!req.session.userId) {
         res.render('index');
     }
-    fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
+    fs.readFile(`users_info/${login}.JSON`, 'utf-8', (err, data) => {
         if (err) {
             console.error(err);
         }
@@ -283,12 +302,13 @@ app.get('/profile', (req, res) => {
             description: profileData.des,
             img: profileData.img,
             account: 'is',
-            stars: profileData.stars,
+            arrayOfStars: profileData.arrayOfStars,
+            arrayOfIMG: profileData.arrayOfIMG
         });
     })
 })
 
-let starsArray = [];
+
 app.post('/send-photo', upload.single('photo'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'No file uploaded.' });
@@ -322,8 +342,10 @@ app.post('/send-photo', upload.single('photo'), async (req, res) => {
     let imageGrey = await makingGrey(filePath);
     if (imageGrey) {
         const whiteObjectsCounter = await countWhiteObjects(imageGrey);
-        starsArray.push(whiteObjectsCounter-1);
-        fs.readFile(`users_info/${login}.JSON`, 'utf-8', (err, data) => {
+        // whiteObjectsCounter = whiteObjectsCounter-1;
+        imgArray.push(photo + '-grey.jpg');
+        starsArray.push(whiteObjectsCounter);
+        fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
             if (err) {
                 console.log(err)
             }
@@ -331,10 +353,11 @@ app.post('/send-photo', upload.single('photo'), async (req, res) => {
             const userInBack = {
                 img: profileData.img,
                 des: profileData.des,
-                stars: starsArray,
+                arrayOfStars: starsArray,
+                arrayOfIMG: imgArray,
             }
             const ReadyuserInBack = JSON.stringify(userInBack, null, 2)
-            fs.writeFileSync(`users_info/${login}.JSON`, ReadyuserInBack, () => { })
+            fs.writeFileSync(`users_info/${req.session.login}.JSON`, ReadyuserInBack, () => { })
         })
         res.json({
             greyImagePath: photo + '-grey.jpg',
@@ -359,7 +382,8 @@ app.post('/profile-update', upload.single('inputProfile'), async (req, res) => {
     const userInfo = {
         img: path.join('uploads', profilePic),
         des: profileDesc,
-        stars: starsArray,
+        arrayOfStars: starsArray,
+        arrayOfIMG: imgArray,
     }
     const userInfoJson = JSON.stringify(userInfo, null, 2);
     fs.writeFile(`users_info/${login}.JSON`, userInfoJson, (err) => {
@@ -367,7 +391,7 @@ app.post('/profile-update', upload.single('inputProfile'), async (req, res) => {
             console.log(err);
             return;
         }
-        fs.readFile(`users_info/${login}.JSON`, 'utf-8', (err, data) => {
+        fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
             if (err) {
                 console.error('Something went wrong during reading file', err);
             }
@@ -378,7 +402,8 @@ app.post('/profile-update', upload.single('inputProfile'), async (req, res) => {
                 img: profileData.img,
                 account: 'is',
                 message: 'Дані успішно оновленні',
-                stars: profileData.stars,
+                arrayOfStars: profileData.arrayOfStars,
+                arrayOfIMG: profileData.arrayOfIMG
             });
         })
     })
@@ -390,6 +415,3 @@ const port = 3030;
 
 app.listen(port, '0.0.0.0', () => console.log(`Server running on port ${port}`));
 
-// app.listen(port, () => {
-//     console.log(`the server has just been started on port ${port}`);
-// })

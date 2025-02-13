@@ -1,3 +1,6 @@
+let host = 'http://localhost:3030';
+// let host = 'https://starscounternew-1.onrender.com'
+
 // making animation on main site
 
 const anImg = document.querySelector('.info-img');
@@ -53,7 +56,7 @@ document.getElementById('form').addEventListener('submit', async(e) => {
     formData.append('photo', file);
 
     try {
-        const response = await fetch('https://starscounternew-1.onrender.com/send-photo', {
+        const response = await fetch(`${host}/send-photo`, {
             method: 'POST',
             body:formData,
         })
@@ -96,7 +99,7 @@ document.getElementById('profile-form').addEventListener('submit', async(e) => {
     formData.append('describsion', profileDesc);
     
     try {
-        const responseP = await fetch('https://starscounternew-1.onrender.com/profile-update', {
+        const responseP = await fetch(`${host}/profile-update`, {
             method: 'POST',
             body: formData,
         });

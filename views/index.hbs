@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,28 +9,42 @@
     <!-- link to fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <!-- link to icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
     <header>
         <div class="container">
             <a href="/" class="Logo">Bright<span>Star</span></a>
-            {{#ifEquals account 'is'}}
+
+            <nav class="header-nav">
                 <ul class="header-ul">
-                    <li class="header-li">Привіт {{login}}!
-                        <ul class="header-sub-ul">
-                            <li class="header-sub-li"><a href="/profile">Профіль</a></li>
-                            <li class="header-sub-li"><a href="/logout">Вийти</a></li>
-                        </ul>
+                    <li class="header-li">
+                        <a href="/astroPhoto">Астрофотографія</a>
+                    </li>
+                    <li class="header-li">
+                        <a href="https://esahubble.org/images/archive/category/stars/" target='_blank'>Архів Фото</a>
                     </li>
                 </ul>
+            </nav>
+
+            {{#ifEquals account 'is'}}
+            <ul class="header-ul">
+                <li class="header-li">Привіт {{login}}!
+                    <ul class="header-sub-ul">
+                        <li class="header-sub-li"><a href="/profile">Профіль</a></li>
+                        <li class="header-sub-li"><a href="/logout">Вийти</a></li>
+                    </ul>
+                </li>
+            </ul>
             {{else}}
-                <div class="buttons-list">
-                    <a href="/login" class="btn">Login</a>
-                    <a href="/register" class="btn">Register</a>
-                </div>
+            <div class="buttons-list">
+                <a href="/login" class="btn">Увійти</a>
+                <a href="/register" class="btn">Реєстрація</a>
+            </div>
             {{/ifEquals}}
         </div>
     </header>
@@ -38,14 +53,16 @@
         <section class="welcome-section">
             <div class="container">
                 <div class="info-wrapper">
-                    <h1>Привіт! Хочеш порахувати зірки?</h1>
-                    <p>Рахуй</p>
-                    <a href="#form" class="downButton"><i class='bx bx-down-arrow'></i></a>
+                    <h1>Астрофотографія в двух словах:</h1>
+                    <p>Астрофотографія — це спеціалізована галузь фотографії, яка пов'язана із фотографуванням небесних тіл та великих ділянок нічного неба.</p>
+                    <br>
+                    <p><h3>Bright<span>Star</span></h3> - веб-додаток для аналізу зображень зоряного неба зі супутників🛰 та телескопів🔭.</p>
                 </div>
 
-                 <div class="info-wrapper">
-                    <h1>Bright<span>Star</span></h1>
-                    <p>- веб-додаток для аналізу зображень зоряного неба з супутників🛰.</p>
+                <div class="info-wrapper">
+                    <h1>Привіт! Хочеш порахувати зірки?</h1>
+                    <h3>Рахуй</h3>
+                    <a href="#form" class="downButton"><i class='bx bx-down-arrow'></i></a>
                 </div>
             </div>
         </section>
@@ -54,14 +71,14 @@
             <div class="container">
                 <form action="/send-photo" method="post" id="form" class="info-wrapper">
                     {{#ifEquals account 'is'}}
-                     {{else}}
-                        <div class="blocker-wrapper">
-                           <div class="blocker">
-                                <h3>Спочатку Увійдіть в Акаунт!</h3>
-                                <a href="/login" class="btn">Увійти</a>
-                                <p>Ще не маєте акаунта? <a href="/register">Зареєструватись</a></p>
-                           </div>
+                    {{else}}
+                    <div class="blocker-wrapper">
+                        <div class="blocker">
+                            <h3>Спочатку Увійдіть в Акаунт!</h3>
+                            <a href="/login" class="btn">Увійти</a>
+                            <p>Ще не маєте акаунта? <a href="/register">Зареєструватись</a></p>
                         </div>
+                    </div>
                     {{/ifEquals}}
                     <h1>Спочатку завантажте фото зоряного неба!</h1>
                     <p>Гарне воно, чи не так?</p>
@@ -72,13 +89,13 @@
                 <img src="img/бекфото.png" alt="" class="info-img">
             </div>
         </section>
-         <div class="info-block-wrapper" id="warningBlock-wrapper">
+        <div class="info-block-wrapper" id="warningBlock-wrapper">
             <div class="warningBlock info-block">
                 <h2 class="WarningH2">Спочатку Виберіть файл!</h2>
                 <div class="progress-line">
                     <div class="progress"></div>
                 </div>
-                <button type="button" class="btn" id="close"><i class='bx bx-x' style='color:#ffffff' ></i></button>
+                <button type="button" class="btn" id="close"><i class='bx bx-x' style='color:#ffffff'></i></button>
             </div>
         </div>
 
@@ -91,4 +108,5 @@
     </main>
     <script src="js/srcipt.js"></script>
 </body>
+
 </html>

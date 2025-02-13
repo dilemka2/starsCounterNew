@@ -16,9 +16,19 @@
     <header>
         <div class="container">
             <a href="/" class="Logo">Bright<span>Star</span></a>
+             <nav class="header-nav">
+                <ul class="header-ul">
+                    <li class="header-li">
+                        <a href="/astroPhoto">Астрофотографія</a>
+                    </li>
+                    <li class="header-li">
+                        <a href="https://esahubble.org/images/archive/category/stars/" target='_blank'>Архів Фото</a>
+                    </li>
+                </ul>
+            </nav>
             <div class="buttons-list">
-                <a href="/login" class="btn">Login</a>
-                <a href="/register" class="btn">Register</a>
+                <a href="/login" class="btn">Увійти</a>
+                <a href="/register" class="btn">Реєстрація</a>
             </div>
         </div>
     </header>
@@ -30,7 +40,7 @@
                 <input type="text" name="login" id="login" placeholder="Введіть логін...">
                 <input type="password" name="password" id="password" placeholder="Введіть пароль...">
                 <p>{{message}}</p>
-                <p>Ще не маєете акаунта? <a href="/register">Зарегеструватись</a></p>
+                <p>Ще не маєете акаунта? <a href="/register">Зареєструватись</a></p>
                 <button type="submit">Увійти</button>
             </form>
         </div>
