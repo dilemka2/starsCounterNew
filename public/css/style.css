@@ -36,7 +36,6 @@ section {
     padding: 0 15px;
 }
 
-
 header {
     background-color: #1D1616;
     position: fixed;
@@ -48,6 +47,7 @@ header {
     -webkit-box-shadow: 0px 10px 38px 0px rgba(79,73,79,1);
     -moz-box-shadow: 0px 10px 38px 0px rgba(79,73,79,1);
     box-shadow: 0px 10px 38px 0px rgba(79,73,79,1);
+    transition: .5s;
 }
 
 header .container {
@@ -56,6 +56,10 @@ header .container {
     align-items: center;
     padding: 20px 10px;
 }
+
+.activeForMenu {
+    transform: translateY(0);
+}   
 
 .Logo {
     user-select: none;
@@ -71,7 +75,6 @@ header .container {
 .Logo:hover {
     transform: scale(1.06);
 }
-
 
 .active {
     background-color: #FDAF7B;
@@ -93,6 +96,19 @@ header .container {
     background-color: #1d1616;
 }
 
+#menu-icon {
+    display: none;
+    font-size: 61px;
+    top: 32px;
+    position: absolute;
+    right: 27px;
+    z-index: 20;
+    color: #BE7B72;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
 
 .header-li:hover .header-sub-ul {
     display: block;
@@ -600,5 +616,50 @@ header .container {
     }
     .profile-card {
         width: 70%;
+    }
+}
+
+@media (max-width:860px) {
+    .info-wrapper {
+        margin-bottom: 10px;
+    }
+    .welcome-section .container {
+        gap: 0;
+        top: 96px;
+    }
+    .header-ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width:620px) {
+    .info-wrapper p {
+        font-size: 19px;
+    }
+    .info-wrapper h1 {
+        font-size: 24px;
+    }
+    .welcome-section .container {
+        top: 46px;
+    }
+    .buttons-list {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+@media (max-width:440px) {
+    #menu-icon {
+        display: block;
+    }
+    header {
+        transform: translateY(-440px);
+        padding-top: 100px;
+    }
+    header .container {
+        flex-direction: column;
+        gap: 40px;
     }
 }

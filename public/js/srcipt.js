@@ -1,6 +1,15 @@
 // let host = 'http://localhost:3030';
 let host = 'https://starscounternew-1.onrender.com'
 
+// makin responsible menu 
+
+const menuBtn = document.querySelector('#menu-icon')
+const header = document.querySelector('header')
+
+menuBtn.addEventListener('click', () => {
+    header.classList.toggle('activeForMenu');
+})
+
 // making animation on main site
 
 const anImg = document.querySelector('.info-img');
