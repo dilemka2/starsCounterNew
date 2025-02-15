@@ -1,7 +1,14 @@
-// let host = 'http://localhost:3030';
-let host = 'https://starscounternew-1.onrender.com'
+let host = 'http://localhost:3030';
+// let host = 'https://starscounternew-1.onrender.com'
 
-// makin responsible menu 
+
+let arrowBTN = document.querySelector('.arrowToTop');
+window.addEventListener('scroll', () => {
+    arrowBTN.classList.toggle('active', window.scrollY>0);
+});
+
+
+// making responsible menu 
 
 const menuBtn = document.querySelector('#menu-icon')
 const header = document.querySelector('header')

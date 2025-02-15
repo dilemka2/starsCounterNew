@@ -78,6 +78,7 @@ header .container {
 
 .active {
     background-color: #FDAF7B;
+    opacity: 1;
 }
 .header-ul {
     display: flex;
@@ -222,8 +223,8 @@ header .container {
 }
 
 .info-img {
-    max-width: 40%;
-    height: auto;
+    width: auto;
+    height: 600px;
     position: absolute;
     bottom: -60px;
     left: -820px;
@@ -610,6 +611,28 @@ header .container {
     font-style:italic;
     margin-bottom: 20px;
 }
+
+.arrowToTop {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #BE7B72;
+    color:#f5f5f5;
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    opacity: 0;
+    transition: .5s;
+}
+
+.arrowToTop .active {
+    opacity: 1;
+}
+
 @media (max-width:970px) {
     .profile-img {
         width: 60%;
@@ -650,6 +673,9 @@ header .container {
         flex-direction: column;
         text-align: center;
     }
+    .info-img {
+        height: 400px;
+    }
 }
 @media (max-width:440px) {
     #menu-icon {
@@ -662,5 +688,17 @@ header .container {
     header .container {
         flex-direction: column;
         gap: 40px;
+    }
+    .info-wrapper h1 {
+        font-size: 16px;
+    }
+    .info-wrapper h3{
+        font-style: 12px;
+    }
+    .info-wrapper {
+        font-size: 16px
+    }
+    .container {
+        top: 0;
     }
 }
