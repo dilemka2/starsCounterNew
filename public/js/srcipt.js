@@ -28,18 +28,23 @@ let progressLine = document.querySelector('.progress-line');
 let progress = document.querySelector('.progress');
 let warningBlock = document.querySelector('#warningBlock-wrapper')
 
-let instBlock = document.querySelector('.instruction-block');
-let instBlockWrapper = document.querySelector('#instructionBlock-wrapper');
-document.querySelector('.infoBTN').addEventListener('click', () => {
-    instBlock.style.transition = '.5s'
-    instBlock.style.transform = 'scale(1)'
-    instBlockWrapper.style.display = 'flex';
-})
-document.querySelector('#closeInst').addEventListener('click', () => {
-    instBlock.style.transition = '.5s'
-    instBlockWrapper.style.display = 'none';
-    instBlock.style.transform = 'scale(0)'
-})
+
+// let instBlock = document.querySelector('.instruction-block');
+// let instBlockWrapper = document.querySelector('#instructionBlock-wrapper');
+// document.querySelector('.infoBTN').addEventListener('click', () => {
+//     instBlock.style.transition = '.2s'
+//     instBlockWrapper.style.display = 'flex';
+//     setTimeout(() =>{
+//         instBlock.style.transform = 'translateY(0px)'
+//     }, 200)
+// })
+// document.querySelector('#closeInst').addEventListener('click', () => {
+//     instBlock.style.transition = '.2s'
+//     instBlock.style.transform = 'translateY(-2000px)'
+//     setTimeout(() => {
+//         instBlockWrapper.style.display = 'none';
+//     }, 200);
+// })
 
 
 let resultBlock = document.querySelector('#resultBlock-wrapper');

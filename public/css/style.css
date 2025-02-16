@@ -22,7 +22,8 @@ main {
 }
 
 .astroPhoto-main section,
-.profile-main section {
+.profile-main section,
+.instruction-main section {
     scroll-snap-align:none;
 }
 
@@ -296,7 +297,7 @@ header .container {
 
 .instructionBlock {
     transition: .5s;
-    transform: scale(0);
+    transform: translateY(-2000px);
 }
 
 .info-block .instruction-block {
@@ -671,6 +672,67 @@ header .container {
     opacity: .8;
 }
 
+/* instructioin-section */
+
+.instructioin-section {
+    padding: 130px 0;
+}
+
+.instructioin-h1 {
+    position: relative;
+    margin-bottom: 50px;
+}
+.instructioin-h1::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: #FDAF7B;
+}
+
+.instructioin-ul {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.instructioin-li {
+    position: relative;
+}
+
+.instructioin-li::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #FDAF7B;
+    top: 4px;
+    left: -15px;
+}
+.instructioin-li a {
+    color: #FDAF7B;
+    transition: .5s;
+}
+
+.instructioin-li a:hover {
+    color: #BE7B72;
+}
+
+.instructioin-img {
+    margin:10px auto;
+    width: 450px;
+    height: auto;
+    border-radius: 25px;
+}
+
+.instructioin-p {
+    font-style: italic;
+    margin-top: 10px;
+}
 @media (max-width:970px) {
     
     .profile-card {
@@ -686,6 +748,13 @@ header .container {
         gap: 0;
         top: 96px;
     }
+    .astroPhoto-main section {
+        padding: 120px 0;
+    }
+    .instructioin-section {
+        padding: 230px 0;
+    }
+
     .header-ul {
         display: flex;
         flex-direction: column;

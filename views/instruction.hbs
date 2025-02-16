@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrightStar/profile</title>
+    <title>BrightStar/main</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- link to fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,10 +16,11 @@
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <div class="container">
             <a href="/" class="Logo">Bright<span>Star</span></a>
-             <nav class="header-nav">
+
+            <nav class="header-nav">
                 <ul class="header-ul">
                     <li class="header-li">
                         <a href="/astroPhoto">Астрофотографія</a>
@@ -27,11 +28,12 @@
                     <li class="header-li">
                         <a href="https://esahubble.org/images/archive/category/stars/" target='_blank'>Архів Фото</a>
                     </li>
-                    <li class="header-li">
+                      <li class="header-li active">
                         <a href="/instruction">Інструкція</a>
                     </li>
                 </ul>
             </nav>
+
             {{#ifEquals account 'is'}}
             <ul class="header-ul">
                 <li class="header-li">Привіт {{login}}!
@@ -50,34 +52,19 @@
         </div>
     </header>
     <button type="button" id="menu-icon"><i class='bx bx-menu-alt-right'></i></button>
-    <main class="profile-main">
+    <main class="instruction-main">
         <div class="container">
-            <section class="profile">
-                <form action="/profile-update" method="post" class="profile-card" id="profile-form"
-                    enctype="multipart/form-data">
-                    <input type="file" name="inputProfile" id="input-profile">
-                    <label for="input-profile">
-                        <img src="{{img}}" class="profile-img" alt="profile-pic">
-                    </label>
-                    <h2 class="profile-h2">{{login}}</h2>
-                    <input type="text" class="profile-description" name="describsion" id="describsion"
-                        placeholder="{{description}}">
-                    <p class="profile-p">{{message}}</p>
-                    <button type="submit" class="btn">Зберегти</button>
-                </form>
-                <div class="profile-starsCounter">
-                    <h2 class="profile-starsCounter-h2">Історія Підрахунків:</h2>
-                    <ul class="profile-starsCounter-ul">
-                        <ul class="profile-ul">
-                            {{#each arrayOfStars as |stars index|}}
-                            <li>
-                                <img class="profile-image" src="uploads/{{lookup ../arrayOfIMG index}}" alt="Image">
-                                <p>Кількість зірок: {{stars}}</p>
-                            </li>
-                            {{/each}}
-                        </ul>
-                    </ul>
-                </div>
+            <section class="instructioin-section">
+                <h1 class="instructioin-h1">Як почати працювати з BrightStar?</h1>
+
+                <ul class="instructioin-ul">
+                    <li class="instructioin-li"><a href="/login">Увійдіть</a> або <a href="/register">створіть</a> аккаунт</li>
+                    <li class="instructioin-li">Виберіть фотографію зоряного неба(її можна знайти у вкладці 'Архів Фото')
+                        <p class="instructioin-p">Наприклад:</p>
+                        <img class="instructioin-img"  src="img/astrophoto4.jpg" alt="">
+                    </li>
+                    <li class="instructioin-li">Натисніть кнопку 'Порахувати зорі' та чекайте на результат</li>
+                </ul>
             </section>
         </div>
     </main>

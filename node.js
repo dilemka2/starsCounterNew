@@ -171,6 +171,13 @@ app.get('/astroPhoto', (req,res) => {
     res.render('astroPhoto');
 })
 
+app.get('/instruction', (req,res) => {
+    if(req.session.userId) {
+        res.render('instruction', {account: 'is', login:login})
+    }
+    res.render('instruction')
+})
+
 let login;
 let password;
 let email;
