@@ -2,12 +2,6 @@ let host = 'http://localhost:3030';
 // let host = 'https://starscounternew-1.onrender.com'
 
 
-let arrowBTN = document.querySelector('.arrowToTop');
-window.addEventListener('scroll', () => {
-    arrowBTN.classList.toggle('active', window.scrollY>0);
-});
-
-
 // making responsible menu 
 
 const menuBtn = document.querySelector('#menu-icon')
@@ -29,10 +23,24 @@ anBtn.addEventListener('mouseleave', () => {
     anImg.style.left = '-820px';
 });
 
-// making warning/result
+// making modal blockss
 let progressLine = document.querySelector('.progress-line');
 let progress = document.querySelector('.progress');
 let warningBlock = document.querySelector('#warningBlock-wrapper')
+
+let instBlock = document.querySelector('.instruction-block');
+let instBlockWrapper = document.querySelector('#instructionBlock-wrapper');
+document.querySelector('.infoBTN').addEventListener('click', () => {
+    instBlock.style.transition = '.5s'
+    instBlock.style.transform = 'scale(1)'
+    instBlockWrapper.style.display = 'flex';
+})
+document.querySelector('#closeInst').addEventListener('click', () => {
+    instBlock.style.transition = '.5s'
+    instBlockWrapper.style.display = 'none';
+    instBlock.style.transform = 'scale(0)'
+})
+
 
 let resultBlock = document.querySelector('#resultBlock-wrapper');
 let resultBlockIn = document.querySelector('.resultBlock')
