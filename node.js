@@ -145,10 +145,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
+    if(req.session.userId) {
+        res.redirect('/profile')
+    }
     res.render('login');
 })
 
 app.get('/register', (req, res) => {
+    if (req.session.userId) {
+        res.redirect('/profile')
+    }
     res.render('register');
 })
 

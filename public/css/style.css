@@ -724,7 +724,7 @@ header .container {
 
 .instructioin-img {
     margin:10px auto;
-    width: 450px;
+    max-width: 50%;
     height: auto;
     border-radius: 25px;
 }
@@ -734,19 +734,21 @@ header .container {
     margin-top: 10px;
 }
 @media (max-width:970px) {
-    
+    .welcome-section .container {
+        gap: 0;
+        top: 96px;
+    }
     .profile-card {
         width: 70%;
+    }
+    section {
+        scroll-snap-align:none;
     }
 }
 
 @media (max-width:860px) {
     .info-wrapper {
         margin-bottom: 10px;
-    }
-    .welcome-section .container {
-        gap: 0;
-        top: 96px;
     }
     .astroPhoto-main section {
         padding: 120px 0;
@@ -786,13 +788,21 @@ header .container {
         flex-direction: column;
         gap: 60px;
     }
+    .welcome-section .container {
+        gap: 0;
+        top: 140px;
+    }
 }
 @media (max-width:440px) {
+    .welcome-section .container {
+        gap: 0;
+        top: 50px;
+    }
     #menu-icon {
         display: block;
     }
     header {
-        transform: translateY(-440px);
+        transform: translateY(-540px);
         padding-top: 100px;
     }
     header .container {
@@ -816,3 +826,4 @@ header .container {
         height: 140px;
     }
 }
+

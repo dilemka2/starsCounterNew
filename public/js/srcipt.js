@@ -1,5 +1,5 @@
-let host = 'http://localhost:3030';
-// let host = 'https://starscounternew-1.onrender.com'
+// let host = 'http://localhost:3030';
+let host = 'https://starscounternew-1.onrender.com'
 
 
 // making responsible menu 
@@ -27,25 +27,6 @@ anBtn.addEventListener('mouseleave', () => {
 let progressLine = document.querySelector('.progress-line');
 let progress = document.querySelector('.progress');
 let warningBlock = document.querySelector('#warningBlock-wrapper')
-
-
-// let instBlock = document.querySelector('.instruction-block');
-// let instBlockWrapper = document.querySelector('#instructionBlock-wrapper');
-// document.querySelector('.infoBTN').addEventListener('click', () => {
-//     instBlock.style.transition = '.2s'
-//     instBlockWrapper.style.display = 'flex';
-//     setTimeout(() =>{
-//         instBlock.style.transform = 'translateY(0px)'
-//     }, 200)
-// })
-// document.querySelector('#closeInst').addEventListener('click', () => {
-//     instBlock.style.transition = '.2s'
-//     instBlock.style.transform = 'translateY(-2000px)'
-//     setTimeout(() => {
-//         instBlockWrapper.style.display = 'none';
-//     }, 200);
-// })
-
 
 let resultBlock = document.querySelector('#resultBlock-wrapper');
 let resultBlockIn = document.querySelector('.resultBlock')
