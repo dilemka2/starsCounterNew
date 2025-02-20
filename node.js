@@ -60,51 +60,6 @@ db.connect((err) => {
 
            
         });
-
-
-    //     sql2 = `
-    //     SHOW COLUMNS FROM space;
-
-    // `;
-
-    //     db.query(sql2, (err, result) => {
-    //         if (err) {
-    //             console.error("❌ Помилка ", err);
-    //         } else {
-    //             console.log(result);
-    //         }
-
-
-           
-        //});
-
-        // let user = {
-        //     email: 'email',
-        //     login: 'login',
-        //     password: 'password',
-        //     created_at: '2025-02-12 14:30:45'
-        // }
-
-        // let sqlInsertInto = 'INSERT INTO space SET ?';
-        // db.query(sqlInsertInto, user, (err, result) => {
-        //     if (err) {
-        //         console.log(err);
-        //         //return res.status(500).send('Something went wrong')
-        //     } else {
-        //         console.log(result);
-        //     }
-        // })
-
-        // let sqlgetInto = 'SELECT * FROM space ';
-        // db.query(sqlgetInto, user, (err, result) => {
-        //     if (err) {
-        //         console.log(err);
-                
-        //     } else {
-        //         console.log(result);
-        //     }
-        // })
-
     }
 });
 
@@ -139,7 +94,7 @@ const upload = multer({ storage })
 // routing
 app.get('/', (req, res) => {
     if (req.session.userId) {
-        res.render('index', { account: 'is', login: login });
+        res.render('index', { account: 'is', login: req.session.login });
     }
     res.render('index');
 })
@@ -171,7 +126,7 @@ app.get('/astroPhoto', (req,res) => {
     if(req.session.userId) {
         res.render('astroPhoto', {
             account:'is',
-            login:login
+            login:req.session.login
         })
     }
     res.render('astroPhoto');
@@ -179,20 +134,17 @@ app.get('/astroPhoto', (req,res) => {
 
 app.get('/instruction', (req,res) => {
     if(req.session.userId) {
-        res.render('instruction', {account: 'is', login:login})
+        res.render('instruction', {account: 'is', login:req.session.login})
     }
     res.render('instruction')
 })
 
-let login;
-let password;
-let email;
 
 app.post('/register', async (req, res) => {
     try {
-        login = req.body.login;
-        password = req.body.password;
-        email = req.body.email;
+        const login = req.body.login;
+        const password = req.body.password;
+        const email = req.body.email;
 
         let sqlCheckerEmail = 'SELECT * FROM space WHERE email = ?';
         db.query(sqlCheckerEmail, email, async (err, result) => {
@@ -258,11 +210,11 @@ app.post('/register', async (req, res) => {
         console.log(e);
     }
 })
-let imgArray = [];
-let starsArray = [];
+
 app.post('/login', async (req, res) => {
-    login = req.body.login;
-    pass = req.body.password;
+    let imgArray = [];
+    let starsArray = [];
+    const login = req.body.login;
     try {
         let sqlChecker = 'SELECT * FROM space WHERE login = ?';
         db.query(sqlChecker, [req.body.login], (err, result) => {
@@ -290,11 +242,12 @@ app.post('/login', async (req, res) => {
                 imgArray = [profileData.arrayOfIMG];
                 console.log(starsArray);
             })
-            if (req.body.password == user.password) {
                 req.session.userId = user.id;
-                req.session.login = req.body.login;
-                return res.render('index', { account: 'is', login: login })
-            }
+                req.session.login =  req.body.login;
+                req.session.arrayOfIMG = imgArray;
+                req.session.arrayOfStars = starsArray;
+                console.log(req.session)
+                return res.render('index', { account: 'is', login: req.session.login })
         })
     }
     catch (e) {
@@ -302,16 +255,21 @@ app.post('/login', async (req, res) => {
     }
 })
 app.get('/profile', (req, res) => {
+    console.log(req.session.login + 'my login')
     if (!req.session.userId) {
         res.render('index');
     }
-    fs.readFile(`users_info/${login}.JSON`, 'utf-8', (err, data) => {
+    if (!req.session.login) {
+        res.render('login');
+    }
+    console.log(req.session.login);
+    fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
         if (err) {
             console.error(err);
         }
         const profileData = JSON.parse(data);
         res.render('profile', {
-            login: login,
+            login: req.session.login,
             description: profileData.des,
             img: profileData.img,
             account: 'is',
@@ -383,23 +341,21 @@ app.post('/send-photo', upload.single('photo'), async (req, res) => {
 })
 
 
-let profilePic;
-let profileDesc;
 app.post('/profile-update', upload.single('inputProfile'), async (req, res) => {
     if (!req.file) {
         return res.status(400).send('The file wasn`t uploaded');
     }
-    profilePic = req.file.filename;
-    profileDesc = req.body.describsion;
+    let profilePic = req.file.filename;
+    let profileDesc = req.body.describsion;
 
     const userInfo = {
         img: path.join('uploads', profilePic),
         des: profileDesc,
-        arrayOfStars: starsArray,
-        arrayOfIMG: imgArray,
+        arrayOfStars: req.session.arrayOfStars,
+        arrayOfIMG: req.session.arrayOfIMG,
     }
     const userInfoJson = JSON.stringify(userInfo, null, 2);
-    fs.writeFile(`users_info/${login}.JSON`, userInfoJson, (err) => {
+    fs.writeFile(`users_info/${req.session.login}.JSON`, userInfoJson, (err) => {
         if (err) {
             console.log(err);
             return;
@@ -410,7 +366,7 @@ app.post('/profile-update', upload.single('inputProfile'), async (req, res) => {
             }
             const profileData = JSON.parse(data);
             res.render('profile', {
-                login: login,
+                login: req.session.login,
                 description: profileData.des,
                 img: profileData.img,
                 account: 'is',

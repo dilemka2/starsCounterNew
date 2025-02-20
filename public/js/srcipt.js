@@ -95,32 +95,69 @@ document.getElementById('form').addEventListener('submit', async(e) => {
     }
 })
 
-document.getElementById('profile-form').addEventListener('submit', async(e) => {
-    e.preventDefault();
-    const profilePic = document.getElementById('input-profile').files[0];
-    const profileDesc = document.getElementById('describsion').value;
-    
-    if(!profilePic) {
-        alert('ви не загрузили файл');
-        return;
-    }
-    const formData = new FormData();
-    formData.append('inputProfile', profilePic);
-    formData.append('describsion', profileDesc);
-    
-    try {
-        const responseP = await fetch(`${host}/profile-update`, {
-            method: 'POST',
-            body: formData,
-        });
 
-        if (!responseP.ok) {
-            throw new Error(`Server error: ${response.statusText}`)
-        }
-    }   
-
-    catch(e) {
-        console.log(e);
-    }
+// review block
+const MistakeReviewBlock = document.querySelector('.Mistakereview-block-wrapper')
+const MistakeReviewProgress = document.querySelector('.review-progress');
+const closeReviewBTN = document.querySelector('#closeReviewBTN').addEventListener('click', () => {
+    MistakeReviewBlock.style.transition = '.5s'
+    setTimeout(() => {
+        MistakeReviewBlock.style.transform = 'scale(0)';
+    }, 200)
 })
 
+
+function showingMistake() {
+    MistakeReviewBlock.style.transition = '.5s';
+    setTimeout(() => {
+        MistakeReviewBlock.style.transform = 'scale(1)'
+        setTimeout(() => {
+            MistakeReviewBlock.style.display = 'block'
+        },200)
+    }, 200);
+    let amount = 100;
+    MistakeReviewProgress.style.width = amount + '%';
+    let interval = setInterval(() => {
+        if (amount == 0) {
+            MistakeReviewBlock.style.transform = 'scale(0)'
+            setTimeout(() => {
+                MistakeReviewBlock.style.display = 'none';
+            }, 200);
+            clearInterval(interval);
+        }
+        amount = amount - 10;
+        MistakeReviewProgress.style.width = amount + '%';
+    }, 200);
+}
+
+const NoAccountreviewBTN = document.querySelector('#NoAccountReviewBTN').addEventListener('click', showingMistake)
+
+
+// document.getElementById('profile-form').addEventListener('submit', async(e) => {
+//     e.preventDefault();
+//     const profilePic = document.getElementById('input-profile').files[0];
+//     const profileDesc = document.getElementById('describsion').value;
+    
+//     if(!profilePic) {
+//         alert('ви не загрузили файл');
+//         return;
+//     }
+//     const formData = new FormData();
+//     formData.append('inputProfile', profilePic);
+//     formData.append('describsion', profileDesc);
+    
+//     try {
+//         const responseP = await fetch(`${host}/profile-update`, {
+//             method: 'POST',
+//             body: formData,
+//         });
+
+//         if (!responseP.ok) {
+//             throw new Error(`Server error: ${response.statusText}`)
+//         }
+//     }   
+
+//     catch(e) {
+//         console.log(e);
+//     }
+// })

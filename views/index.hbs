@@ -92,7 +92,10 @@
                 <img src="img/cal.png" alt="" class="info-img">
             </div>
         </section>
+
         {{!-- modal blocks --}}
+
+        {{!-- files warning --}}
         <div class="info-block-wrapper" id="warningBlock-wrapper">
             <div class="warningBlock info-block">
                 <h2 class="WarningH2">Спочатку Виберіть файл!</h2>
@@ -103,6 +106,7 @@
             </div>
         </div>
 
+        {{!-- result block --}}
         <div class="info-block-wrapper" id="resultBlock-wrapper">
             <div class="resultBlock info-block">
                 <h2 class="ResultH2">Успішно було знайдено!</h2>
@@ -110,19 +114,17 @@
             </div>
         </div>
 
-        {{!-- <div class="info-block-wrapper" id="instructionBlock-wrapper">
-            <div class="instruction-block info-block">
-                <h2 class="instructionBlockh2">Як почати працювати?</h2>
-                <ol>
-                    <li>1.Увійдіть або створіть акаунт</li>
-                    <li>2.Прогорніть сторінку донизу</li>
-                    <li>3.Виберіть фотографію зоряного неба (її можна знайти у вкладці «Архів Фото»).</li>
-                    <li>4.Отримайте результат</li>
-                </ol>
-                <button type="button" class="btn" id="closeInst"><i class='bx bx-x' style='color:#ffffff'></i></button>
+
+
+        {{!-- review block --}}
+        <button class="btn" type="button" id="NoAccountReviewBTN"><i class='bx bxs-phone-outgoing'></i></button>
+        <div class="Mistakereview-block-wrapper">
+            <div class="review-block">
+                 <p class="review-block-p">Спочатку зайдіть в акаунт</p>
+                <div class="review-progress"></div>
+                <button class="btn" id="closeReviewBTN"><i class='bx bxs-x-circle' ></i></button>
             </div>
-        </div> --}}
-        {{!-- <button class="btn infoBTN" type="button">?</button> --}}
+        </div>
     </main>
     <script src="js/srcipt.js"></script>
 </body>
