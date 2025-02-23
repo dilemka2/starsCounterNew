@@ -30,6 +30,11 @@
                     <li class="header-li">
                         <a href="/instruction">Інструкція</a>
                     </li>
+                     {{#ifEquals login 'admin'}}
+                    <li class="header-li">
+                         <a href="/reviews">Відгуки</a>
+                    </li>
+                    {{/ifEquals}}
                 </ul>
             </nav>
             {{#ifEquals account 'is'}}

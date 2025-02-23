@@ -139,9 +139,50 @@ app.get('/instruction', (req,res) => {
     res.render('instruction')
 })
 
+app.get('/reviews', (req,res) => {
+    if (req.session.login && req.session.login == 'admin') {
+        fs.readFile('reviews.JSON', 'utf-8', async(err,data) => {
+            if (err) {
+                console.log(err);
+            }
+            let resultInJson = JSON.parse(data);
+            res.render('reviews', {reviews:resultInJson.review, account:'is', login:req.session.login});
+        })
+    }
+    else {
+        res.render('index');
+    }
+})
+
+app.get('/profile', (req, res) => {
+    if (!req.session.userId) {
+        res.render('index');
+    }
+    if (!req.session.login) {
+        res.render('login');
+    }
+    console.log(req.session.login);
+    fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
+        if (err) {
+            console.error(err);
+        }
+        const profileData = JSON.parse(data);
+        res.render('profile', {
+            login: req.session.login,
+            description: profileData.des,
+            img: profileData.img,
+            account: 'is',
+            arrayOfStars: profileData.arrayOfStars,
+            arrayOfIMG: profileData.arrayOfIMG
+        });
+    })
+})
+
 
 app.post('/register', async (req, res) => {
     try {
+        let imgArray = [];
+        let starsArray = [];
         const login = req.body.login;
         const password = req.body.password;
         const email = req.body.email;
@@ -246,37 +287,12 @@ app.post('/login', async (req, res) => {
                 req.session.login =  req.body.login;
                 req.session.arrayOfIMG = imgArray;
                 req.session.arrayOfStars = starsArray;
-                console.log(req.session)
                 return res.render('index', { account: 'is', login: req.session.login })
         })
     }
     catch (e) {
         console.log(e);
     }
-})
-app.get('/profile', (req, res) => {
-    console.log(req.session.login + 'my login')
-    if (!req.session.userId) {
-        res.render('index');
-    }
-    if (!req.session.login) {
-        res.render('login');
-    }
-    console.log(req.session.login);
-    fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
-        if (err) {
-            console.error(err);
-        }
-        const profileData = JSON.parse(data);
-        res.render('profile', {
-            login: req.session.login,
-            description: profileData.des,
-            img: profileData.img,
-            account: 'is',
-            arrayOfStars: profileData.arrayOfStars,
-            arrayOfIMG: profileData.arrayOfIMG
-        });
-    })
 })
 
 
@@ -380,7 +396,40 @@ app.post('/profile-update', upload.single('inputProfile'), async (req, res) => {
 })
 
 
-const port = 3030;
+app.post('/send-review', async(req,res) => {
+    let review = req.body.reviewInput;
+    let reviewInfo= {};
+    try {
+        fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err,data) => {
+            if (err) {
+                console.log(err)
+            }
+            let loginInfo = JSON.parse(data);
+            reviewInfo = {
+                reviewText:review,
+                login:req.session.login,
+                loginImg:loginInfo.img
+            }
+            fs.readFile('reviews.JSON', 'utf-8', (err,data) => {
+                if (err) {
+                    console.log(err)
+                }
+                let fullReviews = { review: []};
+                if (data) {
+                    fullReviews = JSON.parse(data);
+                }
+                fullReviews.review.push(reviewInfo)
+                fs.writeFile('reviews.JSON', JSON.stringify(fullReviews,null,2), () => {
+                    console.log('was written');
+                })
+            })
+    })}
+    catch(e) {
+        console.log(e)
+    }
+})
+
+const port = 10000;
 
 app.listen(port, '0.0.0.0', () => console.log(`Server running on port ${port}`));
 

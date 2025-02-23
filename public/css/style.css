@@ -734,7 +734,7 @@ header .container {
     margin-top: 10px;
 }
 
-/* review */
+/* review-sending*/
 
 .Mistakereview-block-wrapper {
     position: absolute;
@@ -773,7 +773,8 @@ header .container {
     right: 5px;
 }
 
-#NoAccountReviewBTN {
+#NoAccountReviewBTN,
+#AccountReviewBTN {
     width: 50px !important; 
     height: 50px !important;
     border-radius: 50%;
@@ -783,13 +784,15 @@ header .container {
     transition: .5s;
 }
 
-#NoAccountReviewBTN:hover {
+#NoAccountReviewBTN:hover,
+#AccountReviewBTN:hover {
     transform: translateY(-5px);
     opacity: .6;
 }
 
 #NoAccountReviewBTN,
-#closeReviewBTN {
+#closeReviewBTN,
+#AccountReviewBTN {
     padding: 5px;
     width: 30px;
     height: 30px;
@@ -797,6 +800,75 @@ header .container {
     justify-content: center;
     align-items: center;
     font-size: 25px;
+}
+
+.review-form {
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+    padding: 20px;
+    max-width: 300px;
+    height: 300px;
+    border-radius: 25px 25px 150px 25px;
+    background-color: #4d3d3d;
+    border: 2px solid #BE7B72;
+    text-align: center;
+    display: none;
+}
+
+.review-h2 {
+    margin-bottom: 50px;
+}
+
+.review-input {
+    height: 70px;
+    outline: none;
+    background-color: #4d3d3d;
+    border: 2px solid #BE7B72;
+    border-radius: 15px;
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+    transition: .5s;
+    margin-bottom: 70px;
+}
+
+
+.review-btn .btn {
+    width: 100%;
+}
+
+.active {
+    display: block !important;
+}
+
+/* reviews-page */
+
+.reviews-wrapper {
+    padding: 150px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.review-block {
+    width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 25px;
+    border: 2px solid #BE7B72;
+}
+
+.review-block-h2,
+.review-block-p {
+    color: #1d1616;
+}
+
+.review-block-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 30px;
 }
 
 @media (max-width:970px) {

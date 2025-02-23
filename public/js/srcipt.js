@@ -105,15 +105,25 @@ const closeReviewBTN = document.querySelector('#closeReviewBTN').addEventListene
         MistakeReviewBlock.style.transform = 'scale(0)';
     }, 200)
 })
-
+const NoAccountreviewBTN = document.querySelector('#NoAccountReviewBTN')
+const ReviewBlock = document.querySelector('.review-form');
+const AccountreviewBTN = document.querySelector('#AccountReviewBTN')
+if (AccountreviewBTN) {
+    AccountreviewBTN.addEventListener('click', () => {
+        ReviewBlock.classList.toggle('active');
+    })
+}
+if (NoAccountreviewBTN) {
+    NoAccountreviewBTN.addEventListener('click', showingMistake)
+}
 
 function showingMistake() {
     MistakeReviewBlock.style.transition = '.5s';
     setTimeout(() => {
-        MistakeReviewBlock.style.transform = 'scale(1)'
         setTimeout(() => {
-            MistakeReviewBlock.style.display = 'block'
+            MistakeReviewBlock.style.transform = 'scale(1)'
         },200)
+        MistakeReviewBlock.style.display = 'block'
     }, 200);
     let amount = 100;
     MistakeReviewProgress.style.width = amount + '%';
@@ -127,10 +137,10 @@ function showingMistake() {
         }
         amount = amount - 10;
         MistakeReviewProgress.style.width = amount + '%';
-    }, 200);
+    }, 400);
 }
 
-const NoAccountreviewBTN = document.querySelector('#NoAccountReviewBTN').addEventListener('click', showingMistake)
+
 
 
 // document.getElementById('profile-form').addEventListener('submit', async(e) => {

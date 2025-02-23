@@ -31,6 +31,11 @@
                     <li class="header-li">
                         <a href="/instruction">Інструкція</a>
                     </li>
+                     {{#ifEquals login 'admin'}}
+                    <li class="header-li">
+                        <a href="/reviews">Відгуки</a>
+                    </li>
+                    {{/ifEquals}}
                 </ul>
             </nav>
 
@@ -117,7 +122,11 @@
 
 
         {{!-- review block --}}
+        {{#ifEquals account 'is'}}
+        <button class="btn" type="button" id="AccountReviewBTN"><i class='bx bxs-phone-outgoing'></i></button>
+        {{else}}
         <button class="btn" type="button" id="NoAccountReviewBTN"><i class='bx bxs-phone-outgoing'></i></button>
+        {{/ifEquals}}
         <div class="Mistakereview-block-wrapper">
             <div class="review-block">
                  <p class="review-block-p">Спочатку зайдіть в акаунт</p>
@@ -125,6 +134,12 @@
                 <button class="btn" id="closeReviewBTN"><i class='bx bxs-x-circle' ></i></button>
             </div>
         </div>
+
+        <form action="/send-review" method="post" class="review-form">
+            <h2 class="review-h2">Відправити відгук</h2>
+            <input type="text" class="review-input" name="reviewInput">
+            <button type="submit" class="review-btn btn">Відправити</button>
+        </form>
     </main>
     <script src="js/srcipt.js"></script>
 </body>
