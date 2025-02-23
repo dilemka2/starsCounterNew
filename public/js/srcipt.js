@@ -1,5 +1,5 @@
-// let host = 'http://localhost:3030';
-let host = 'https://starscounternew-1.onrender.com'
+let host = 'http://localhost:3030';
+// let host = 'https://starscounternew-1.onrender.com'
 
 
 // making responsible menu 

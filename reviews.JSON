@@ -1,9 +1,14 @@
 {
   "review": [
     {
-      "reviewText": "my review",
+      "reviewText": "fdfd",
       "login": "test3",
       "loginImg": "uploads\\6six.png"
     },
+    {
+      "reviewText": "32",
+      "login": "test3",
+      "loginImg": "uploads\\6six.png"
+    }
   ]
 }
