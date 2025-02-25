@@ -40,8 +40,14 @@
         <div class="login-register__block">
             <form action="/login" method="post">
                 <h1>Авторизація</h1>
-                <input type="text" name="login" id="login" placeholder="Введіть логін...">
-                <input type="password" name="password" id="password" placeholder="Введіть пароль...">
+                <div class="login-register__input-wrapper">
+                    <input type="text" name="login" id="login" placeholder=" ">
+                    <label for="login" class="login-register__label">Логін</label>
+                </div>
+                <div class="login-register__input-wrapper">
+                    <input type="password" name="password" id="password" placeholder=" ">
+                    <label for="password" class="login-register__label">Пароль</label>
+                </div>
                 <p>{{message}}</p>
                 <p>Ще не маєете акаунта? <a href="/register">Зареєструватись</a></p>
                 <button type="submit" class="login">Увійти</button>

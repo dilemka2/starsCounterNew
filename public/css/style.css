@@ -430,17 +430,34 @@ header .container {
     height: 30px;
     background-color: #4d3d3d;
     border: none;
-    outline: 2px solid #FDAF7B;
+    border-bottom: 2px solid #FDAF7B;
     font-size: 20px;
     color: white;
     transition: .5s;
 }
 
 .login-register__block input:focus {
-    outline: 2px solid #BE7B72;
-    border-radius: 5px;
+    outline: none;
 }
 
+.login-register__input-wrapper {
+    position: relative;
+}
+
+.login-register__label {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    transition: .2s;
+} 
+
+.login-register__block input:focus ~ .login-register__label {
+    bottom: 25px;
+}
+
+.login-register__block input:not(:placeholder-shown) ~ label {
+    bottom: 25px;
+}
 
 .login-register__block button {
     padding: 10px 0;
@@ -454,6 +471,14 @@ header .container {
 
 .login-register__block button:hover {
     transform: translateY(-2px);
+}
+
+.login-register__p {
+    color: #FDAF7B;
+}
+
+.login-register__block a{
+    color: #FDAF7B;
 }
 
 /* blocker */
@@ -759,7 +784,7 @@ header .container {
 .review-progress {
     width: 100%;
     height:8px;
-    background-color: #1d1616;
+    background-color: #FDAF7B;
     position: absolute;
     bottom: -2px;
     left: 0;
@@ -782,6 +807,7 @@ header .container {
     bottom: 20px;
     right: 40px;
     transition: .5s;
+    z-index: 25;
 }
 
 #NoAccountReviewBTN:hover,
@@ -853,14 +879,18 @@ header .container {
 
 .review-block {
     width: 100%;
-    background-color: #f5f5f5;
+    background-color: #BE7B72;
     border-radius: 25px;
     border: 2px solid #BE7B72;
 }
 
+.review-block button {
+    background-color: #BE7B72;
+}
+
 .review-block-h2,
 .review-block-p {
-    color: #1d1616;
+    color: #fff;
 }
 
 .review-block-img {

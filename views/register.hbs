@@ -42,10 +42,19 @@
         <div class="login-register__block">
             <form action="/register" method="post"> 
                 <h1>Регистрація</h1>
-                <input type="text" name="login" id="login" placeholder="Введіть логін...">
-                <input type="text" name="email" id="email" placeholder="Введіть почта...">
-                <input type="password" name="password" id="password" placeholder="Введіть пароль...">
-                <p>{{message}}</p>
+                <div class="login-register__input-wrapper">
+                    <input type="text" name="login" id="login" placeholder=''>
+                    <label for="login" class="login-register__label">Логін</label>
+                </div>
+                <div class="login-register__input-wrapper">
+                    <input type="text" name="email" id="email" placeholder="">
+                    <label for="email" class="login-register__label">Почта</label>
+                </div>
+                <div class="login-register__input-wrapper">
+                    <input type="password" name="password" id="password" placeholder="">
+                    <label for="password" class="login-register__label">Пароль</label>
+                </div>
+                <p class="login-register__p">{{message}}</p>
                 <p>Вже маєш акаунт? <a href="/login">Увійти</a></p>
                 <button type="submit">Зареєструватись</button>
             </form>

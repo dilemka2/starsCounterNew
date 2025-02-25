@@ -141,33 +141,31 @@ function showingMistake() {
 }
 
 
-
-
-// document.getElementById('profile-form').addEventListener('submit', async(e) => {
-//     e.preventDefault();
-//     const profilePic = document.getElementById('input-profile').files[0];
-//     const profileDesc = document.getElementById('describsion').value;
+document.getElementById('profile-form').addEventListener('submit', async(e) => {
+    e.preventDefault();
+    const profilePic = document.getElementById('input-profile').files[0];
+    const profileDesc = document.getElementById('describsion').value;
     
-//     if(!profilePic) {
-//         alert('ви не загрузили файл');
-//         return;
-//     }
-//     const formData = new FormData();
-//     formData.append('inputProfile', profilePic);
-//     formData.append('describsion', profileDesc);
+    if(!profilePic) {
+        alert('ви не загрузили файл');
+        return;
+    }
+    const formData = new FormData();
+    formData.append('inputProfile', profilePic);
+    formData.append('describsion', profileDesc);
     
-//     try {
-//         const responseP = await fetch(`${host}/profile-update`, {
-//             method: 'POST',
-//             body: formData,
-//         });
+    try {
+        const responseP = await fetch(`${host}/profile-update`, {
+            method: 'POST',
+            body: formData,
+        });
 
-//         if (!responseP.ok) {
-//             throw new Error(`Server error: ${response.statusText}`)
-//         }
-//     }   
+        if (!responseP.ok) {
+            throw new Error(`Server error: ${response.statusText}`)
+        }
+    }   
 
-//     catch(e) {
-//         console.log(e);
-//     }
-// })
+    catch(e) {
+        console.log(e);
+    }
+})

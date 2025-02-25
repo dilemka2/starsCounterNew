@@ -195,7 +195,7 @@ app.post('/register', async (req, res) => {
             }
             if (result.length > 0) {
                 return res.render('register', {
-                    message: 'This email is already used'
+                    message: `Ця почта вже використовується`
                 })
             }
 
@@ -264,13 +264,13 @@ app.post('/login', async (req, res) => {
             }
             if (result.length === 0) {
                 return res.render('login', {
-                    message: 'There is no account with that login'
+                    message: `Акаунтів з Логином ${login} не існує`
                 })
             }
             let user = result[0];
             if (req.body.password != user.password) {
                 return res.render('login', {
-                    message: 'Wrong password'
+                    message: 'Не правильний пароль'
                 })
             }
             fs.readFileSync(`users_info/${req.body.login+'.JSON'}`, 'utf-8', async(err,data) => {
@@ -421,6 +421,7 @@ app.post('/send-review', async(req,res) => {
                 fullReviews.review.push(reviewInfo)
                 fs.writeFile('reviews.JSON', JSON.stringify(fullReviews,null,2), () => {
                     console.log('was written');
+                    res.render('index', {account:'is', login:req.session.login, reviewM:'Відгук був успішно відправлений'})
                 })
             })
     })}
