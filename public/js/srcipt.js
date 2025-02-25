@@ -1,4 +1,4 @@
-// let host = 'http://localhost:3030';
+// let host = 'http://localhost:10000';
 let host = 'https://starscounternew-1.onrender.com'
 
 
@@ -141,31 +141,34 @@ function showingMistake() {
 }
 
 
-document.getElementById('profile-form').addEventListener('submit', async(e) => {
-    e.preventDefault();
-    const profilePic = document.getElementById('input-profile').files[0];
-    const profileDesc = document.getElementById('describsion').value;
-    
-    if(!profilePic) {
-        alert('ви не загрузили файл');
-        return;
-    }
-    const formData = new FormData();
-    formData.append('inputProfile', profilePic);
-    formData.append('describsion', profileDesc);
-    
-    try {
-        const responseP = await fetch(`${host}/profile-update`, {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (!responseP.ok) {
-            throw new Error(`Server error: ${response.statusText}`)
+if (document.getElementById('profile-form')) {
+    document.getElementById('profile-form').addEventListener('submit', async(e) => {
+        e.preventDefault();
+        const profilePic = document.getElementById('input-profile').files[0];
+        const profileDesc = document.getElementById('describsion').value;
+        
+        if(!profilePic) {
+            alert('ви не загрузили файл');
+            return;
         }
-    }   
-
-    catch(e) {
-        console.log(e);
-    }
-})
+        const formData = new FormData();
+        formData.append('inputProfile', profilePic);
+        formData.append('describsion', profileDesc);
+        
+        try {
+            const responseP = await fetch(`${host}/profile-update`, {
+                method: 'POST',
+                body: formData,
+            });
+    
+            if (!responseP.ok) {
+                throw new Error(`Server error: ${response.statusText}`)
+            }
+        }   
+    
+        catch(e) {
+            console.log(e);
+        }
+    })
+    
+}

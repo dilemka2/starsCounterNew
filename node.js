@@ -330,8 +330,8 @@ app.post('/send-photo', upload.single('photo'), async (req, res) => {
     if (imageGrey) {
         const whiteObjectsCounter = await countWhiteObjects(imageGrey);
         // whiteObjectsCounter = whiteObjectsCounter-1;
-        imgArray.push(photo + '-grey.jpg');
-        starsArray.push(whiteObjectsCounter);
+        req.session.arrayOfIMG.push(photo + '-grey.jpg');
+        req.session.arrayOfStars.push(whiteObjectsCounter);
         fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
             if (err) {
                 console.log(err)
@@ -340,8 +340,8 @@ app.post('/send-photo', upload.single('photo'), async (req, res) => {
             const userInBack = {
                 img: profileData.img,
                 des: profileData.des,
-                arrayOfStars: starsArray,
-                arrayOfIMG: imgArray,
+                arrayOfStars: req.session.arrayOfStars,
+                arrayOfIMG:req.session.arrayOfIMG,
             }
             const ReadyuserInBack = JSON.stringify(userInBack, null, 2)
             fs.writeFileSync(`users_info/${req.session.login}.JSON`, ReadyuserInBack, () => { })
