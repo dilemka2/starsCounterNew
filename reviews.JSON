@@ -14,6 +14,11 @@
       "reviewText": "my name is",
       "login": "43",
       "loginImg": "uploads\\ava.verhom.jpg"
+    },
+    {
+      "reviewText": "lol",
+      "login": "test3",
+      "loginImg": "uploads\\6six.png"
     }
   ]
 }
