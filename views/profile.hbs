@@ -68,6 +68,10 @@
                     <input type="text" class="profile-description" name="describsion" id="describsion"
                         placeholder="{{description}}">
                     <p class="profile-p">{{message}}</p>
+                    <div class="profile-account-settings">
+                        <a href="#" class="btn" id="DeleteAc-btn">Видалити</a>
+                        <a href="/logout" class="btn">Вийти</a>
+                    </div>
                     <button type="submit" class="btn">Зберегти</button>
                 </form>
                 <div class="profile-starsCounter">
@@ -84,6 +88,17 @@
                     </ul>
                 </div>
             </section>
+
+            {{!-- modal blocks --}}
+            <div class="delete-wrapper" id="delete-wrapper">
+                <div class="info-block">
+                    <h2>Ви впевнені що хочете видалити акаунт?</h2>
+                    <div class="profile-account-settings">
+                        <a href="/delete-ac" class="btn">Так</a>
+                        <button class="btn" id="closeDeleteWrapper">Ні</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <script src="js/srcipt.js"></script>

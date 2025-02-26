@@ -621,6 +621,37 @@ header .container {
     height: auto;
 }
 
+.profile-account-settings {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.profile-account-settings .btn {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: #1d1616b0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.delete-wrapper .info-block {
+    width: 30%;
+}
 
 /* astropPhoto */
 
@@ -955,6 +986,12 @@ header .container {
         top: 300px;
         flex-direction: column;
         gap: 60px;
+    }
+    #profile-form {
+        min-height: 510px;
+    }
+    .profile-img {
+        background-color: #fff;
     }
     .welcome-section .container {
         gap: 0;

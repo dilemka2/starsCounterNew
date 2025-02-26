@@ -1,5 +1,5 @@
-// let host = 'http://localhost:10000';
-let host = 'https://starscounternew-1.onrender.com'
+let host = 'http://localhost:10000';
+// let host = 'https://starscounternew-1.onrender.com'
 
 
 // making responsible menu 
@@ -15,13 +15,14 @@ menuBtn.addEventListener('click', () => {
 
 const anImg = document.querySelector('.info-img');
 const anBtn = document.querySelector('#AnBtn');
-anBtn.addEventListener('mouseenter', () => {
-    anImg.style.left = '0';
-});
-
-anBtn.addEventListener('mouseleave', () => {
-    anImg.style.left = '-820px';
-});
+if (anBtn) {
+    anBtn.addEventListener('mouseenter', () => {
+        anImg.style.left = '0';
+    });
+    anBtn.addEventListener('mouseleave', () => {
+        anImg.style.left = '-820px';
+    });   
+}
 
 // making modal blockss
 let progressLine = document.querySelector('.progress-line');
@@ -64,7 +65,7 @@ document.getElementById('form').addEventListener('submit', async(e) => {
     }
     const formData = new FormData();
     formData.append('photo', file);
-
+    anBtn.style.opacity = '0';
     try {
         const response = await fetch(`${host}/send-photo`, {
             method: 'POST',
@@ -77,6 +78,7 @@ document.getElementById('form').addEventListener('submit', async(e) => {
         const result = await response.json();
 
         if (result) {
+            anBtn.style.opacity = '1';
             resultBlock.style.display = 'flex';
             progress.style.display = 'none';
             resultImg.src = `/uploads/${result.greyImagePath}`;
@@ -171,4 +173,21 @@ if (document.getElementById('profile-form')) {
         }
     })
     
+}
+
+// modal blocks in profile
+
+const deleteAccountBTN = document.querySelector('#DeleteAc-btn');
+const closeDeleteWrapper = document.querySelector('#closeDeleteWrapper')
+const deleteWrapper = document.querySelector('delete-wrapper');
+
+if(deleteAccountBTN) {
+    deleteAccountBTN.onclick = () => {
+        deleteWrapper.style.display = 'flex';
+    }    
+}
+if(closeDeleteWrapper) {
+    closeDeleteWrapper.onclick = () => {
+        deleteWrapper.style.display = 'none';
+    }    
 }

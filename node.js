@@ -10,7 +10,6 @@ const fs = require('fs');
 // sending email
 const nodemailer = require('nodemailer');
 
-
 const app = express();
 dotenv.config({ path: '.env' });
 
@@ -122,6 +121,32 @@ app.get('/logout', async (req, res) => {
     });
 })
 
+app.get("/delete-ac", (req,res)=> {
+    if (!req.session.userId) {
+        res.redirect('/register');
+    }
+    let sql = 'SELECT * FROM space WHERE login = ?'
+    db.query(sql, req.session.login,(err,result)=> {
+        if(err){
+            console.log(err)
+        }
+        let user = result[0];
+        let id = user.id;
+        fs.unlink(`users_info/${req.session.login}.JSON`, () => {})
+        let sqlDelete = 'DELETE FROM space WHERE id = ?'
+        db.query(sqlDelete, id,(err,result)=>{
+            if(err){
+                console.log(err)
+            }
+        })
+        req.session.destroy((err) => {
+            if(err) {
+                console.log(err);
+            }
+        })
+        res.redirect('/register');
+    })
+})
 app.get('/astroPhoto', (req,res) => {
     if(req.session.userId) {
         res.render('astroPhoto', {
@@ -228,12 +253,13 @@ app.post('/register', async (req, res) => {
                     pass: process.env.EMAIL_PASS,
                 }
             })
+            
 
             const mailOption = {
                 from: process.env.EMAIL_USER,
                 to: req.body.email,
                 subject: 'Welcome to Our Service!',
-                text: `Hi ${login},\n\nThank you for registering! Your account has been successfully created.\n\nBest regards,\ngo to count those stars!`
+                text: `Привіт ${login}😁,\n\nДякую що приєднались до нас😊! Ваш акаунт був успішно створений.\n\nВсього найкращого,\nну мо рахувати зірки!!`
             }
 
             transporter.sendMail(mailOption, (error, info) => {
@@ -285,6 +311,7 @@ app.post('/login', async (req, res) => {
             })
                 req.session.userId = user.id;
                 req.session.login =  req.body.login;
+                req.session.email = user.email
                 req.session.arrayOfIMG = imgArray;
                 req.session.arrayOfStars = starsArray;
                 return res.render('index', { account: 'is', login: req.session.login })
@@ -420,7 +447,28 @@ app.post('/send-review', async(req,res) => {
                 }
                 fullReviews.review.push(reviewInfo)
                 fs.writeFile('reviews.JSON', JSON.stringify(fullReviews,null,2), () => {
-                    console.log('was written');
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: process.env.EMAIL_USER,
+                            pass: process.env.EMAIL_PASS,
+                        }
+                    })
+                    
+                    const mailOption = {
+                        from:process.env.EMAIL_USER,
+                        to:req.session.email,
+                        subject: 'Ваш Відгук',
+                        text: `${req.session.login}, ваш відгук був успішно надісланий, дякую за допомогу😁.`
+                    }
+                    transporter.sendMail(mailOption, (error, info) => {
+                        if (error) {
+                            console.log(error);
+                        }
+                        else {
+                            console.log('the email has just been sent')
+                        }
+                    })
                     res.render('index', {account:'is', login:req.session.login, reviewM:'Відгук був успішно відправлений'})
                 })
             })
