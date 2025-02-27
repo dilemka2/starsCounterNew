@@ -403,21 +403,7 @@ app.post('/profile-update', upload.single('inputProfile'), async (req, res) => {
             console.log(err);
             return;
         }
-        fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
-            if (err) {
-                console.error('Something went wrong during reading file', err);
-            }
-            const profileData = JSON.parse(data);
-            res.render('profile', {
-                login: req.session.login,
-                description: profileData.des,
-                img: profileData.img,
-                account: 'is',
-                message: 'Дані успішно оновленні',
-                arrayOfStars: profileData.arrayOfStars,
-                arrayOfIMG: profileData.arrayOfIMG
-            });
-        })
+        res.json({result:'result'});
     })
 
 })

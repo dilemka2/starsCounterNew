@@ -1,0 +1,10 @@
+{
+  "img": "uploads\\2.webp",
+  "des": "My bio",
+  "arrayOfStars": [
+    45
+  ],
+  "arrayOfIMG": [
+    "1.jpg-grey.jpg"
+  ]
+}

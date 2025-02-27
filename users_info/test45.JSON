@@ -1,12 +1,6 @@
 {
-  "img": "uploads\\6six.png",
-  "des": "fsfsfs",
-  "arrayOfStars": [
-    319,
-    319
-  ],
-  "arrayOfIMG": [
-    "stars.jfif-grey.jpg",
-    "stars.jfif-grey.jpg"
-  ]
+  "img": "uploads\\2.png",
+  "des": "fsfs",
+  "arrayOfStars": [],
+  "arrayOfIMG": []
 }

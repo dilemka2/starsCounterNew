@@ -23,6 +23,11 @@ document.getElementById('profile-form').addEventListener('submit', async(e) => {
         if (!responseP.ok) {
             throw new Error(`Server error: ${response.statusText}`)
         }
+
+        const result = await responseP.json();
+        if (result) {
+            window.location.reload();
+        }
     }   
 
     catch(e) {
