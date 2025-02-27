@@ -1,5 +1,5 @@
-let host = 'http://localhost:10000';
-// let host = 'https://starscounternew-1.onrender.com'
+// let host = 'http://localhost:10000';
+let host = 'https://starscounternew-1.onrender.com'
 
 
 // making responsible menu 
@@ -66,6 +66,9 @@ document.getElementById('form').addEventListener('submit', async(e) => {
     const formData = new FormData();
     formData.append('photo', file);
     anBtn.style.opacity = '0';
+    setTimeout(() => {
+        anBtn.style.display='none'
+    }, 200);
     try {
         const response = await fetch(`${host}/send-photo`, {
             method: 'POST',
@@ -78,10 +81,15 @@ document.getElementById('form').addEventListener('submit', async(e) => {
         const result = await response.json();
 
         if (result) {
-            anBtn.style.opacity = '1';
             resultBlock.style.display = 'flex';
             progress.style.display = 'none';
             resultImg.src = `/uploads/${result.greyImagePath}`;
+            const img = document.querySelector('.preview');
+            img.style.display = 'none';
+            anBtn.style.display='block';
+            setTimeout(() => {
+                anBtn.style.opacity='1';
+            }, 200);
 
             resultH2.innerText = `Успішно було знайдено ${result.whiteObjectsCount} зірки!`;
             let closeBTN = document.createElement('button');
@@ -142,52 +150,18 @@ function showingMistake() {
     }, 400);
 }
 
+const file = document.getElementById('input').files[0]
 
-if (document.getElementById('profile-form')) {
-    document.getElementById('profile-form').addEventListener('submit', async(e) => {
-        e.preventDefault();
-        const profilePic = document.getElementById('input-profile').files[0];
-        const profileDesc = document.getElementById('describsion').value;
-        
-        if(!profilePic) {
-            alert('ви не загрузили файл');
-            return;
+document.querySelector('#input').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.querySelector('.preview');
+            img.style.display = 'block';
+            img.src = e.target.result;
         }
-        const formData = new FormData();
-        formData.append('inputProfile', profilePic);
-        formData.append('describsion', profileDesc);
-        
-        try {
-            const responseP = await fetch(`${host}/profile-update`, {
-                method: 'POST',
-                body: formData,
-            });
-    
-            if (!responseP.ok) {
-                throw new Error(`Server error: ${response.statusText}`)
-            }
-        }   
-    
-        catch(e) {
-            console.log(e);
-        }
-    })
-    
-}
+        reader.readAsDataURL(file)
+    }
+})
 
-// modal blocks in profile
-
-const deleteAccountBTN = document.querySelector('#DeleteAc-btn');
-const closeDeleteWrapper = document.querySelector('#closeDeleteWrapper')
-const deleteWrapper = document.querySelector('delete-wrapper');
-
-if(deleteAccountBTN) {
-    deleteAccountBTN.onclick = () => {
-        deleteWrapper.style.display = 'flex';
-    }    
-}
-if(closeDeleteWrapper) {
-    closeDeleteWrapper.onclick = () => {
-        deleteWrapper.style.display = 'none';
-    }    
-}

@@ -1,6 +1,12 @@
 {
-  "img": "uploads\\profile-img.webp",
-  "des": "Add Bio📝",
-  "arrayOfStars": [],
-  "arrayOfIMG": []
+  "img": "uploads\\6six.png",
+  "des": "fsfsfs",
+  "arrayOfStars": [
+    319,
+    319
+  ],
+  "arrayOfIMG": [
+    "stars.jfif-grey.jpg",
+    "stars.jfif-grey.jpg"
+  ]
 }

@@ -356,6 +356,14 @@ header .container {
     text-align: center;
 }
 
+.preview {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    height: auto;
+    border-radius: 15px;
+}
+
 .resultBlock .info-block {
     min-height: 70vh;
 }
@@ -392,7 +400,7 @@ header .container {
 
 .result-img {
     margin-top: 10px;
-    width: 100%;
+    width: 70%;
     height: auto;
     margin: 0 auto;
     background-position: center;
@@ -930,6 +938,20 @@ header .container {
     border-radius: 50%;
     float: left;
     margin-right: 30px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color: #1d1616;
+    border-radius: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #4d3d3d;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
 }
 
 @media (max-width:970px) {

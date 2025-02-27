@@ -64,6 +64,16 @@
       "reviewText": "fsfs",
       "login": "test3",
       "loginImg": "uploads\\6six.png"
+    },
+    {
+      "reviewText": "hfg",
+      "login": "test45",
+      "loginImg": "uploads\\profile-img.webp"
+    },
+    {
+      "reviewText": "hi",
+      "login": "admin",
+      "loginImg": "uploads\\profile-img.webp"
     }
   ]
 }
