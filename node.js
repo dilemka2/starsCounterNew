@@ -186,7 +186,6 @@ app.get('/profile', (req, res) => {
     if (!req.session.login) {
         res.render('login');
     }
-    console.log(req.session.login);
     fs.readFile(`users_info/${req.session.login}.JSON`, 'utf-8', (err, data) => {
         if (err) {
             console.error(err);
