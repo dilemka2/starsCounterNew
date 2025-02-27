@@ -798,6 +798,13 @@ header .container {
     margin-top: 10px;
 }
 
+.instructioin-video {
+    width: 100%;
+    height: auto;
+    border:2px solid #BE7B72;
+    border-radius: 15px;
+}
+
 /* review-sending*/
 
 .Mistakereview-block-wrapper {
