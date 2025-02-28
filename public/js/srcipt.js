@@ -42,16 +42,18 @@ function progressUpdating() {
     let amount = 100;
     progress.style.display = 'block';
     progress.style.width = amount + '%';
-    let interval = setInterval(() => {
-        if (amount == 0) {
-            warningBlock.style.display = 'none';
-            clearInterval(interval);
-        }
-        else {
-            amount = amount - 10;
-            progress.style.width = amount + '%';
-        }
-    }, 300)
+    setTimeout(() => {
+        let interval = setInterval(() => {
+            if (amount == 0) {
+                warningBlock.style.display = 'none';
+                clearInterval(interval);
+            }
+            else {
+                amount = amount - 10;
+                progress.style.width = amount + '%';
+            }
+        }, 300)
+    }, 600)
 }
 
 
@@ -124,7 +126,10 @@ if (AccountreviewBTN) {
     })
 }
 if (NoAccountreviewBTN) {
-    NoAccountreviewBTN.addEventListener('click', showingMistake)
+    NoAccountreviewBTN.addEventListener('click', ()=> {
+        showingMistake()
+        NoAccountreviewBTN.style.zIndex = '-10';
+    })
 }
 
 function showingMistake() {
@@ -137,20 +142,22 @@ function showingMistake() {
     }, 200);
     let amount = 100;
     MistakeReviewProgress.style.width = amount + '%';
+   setTimeout(() => {
     let interval = setInterval(() => {
         if (amount == 0) {
             MistakeReviewBlock.style.transform = 'scale(0)'
             setTimeout(() => {
                 MistakeReviewBlock.style.display = 'none';
             }, 200);
+            NoAccountreviewBTN.style.zIndex = '1';
             clearInterval(interval);
         }
         amount = amount - 10;
         MistakeReviewProgress.style.width = amount + '%';
     }, 400);
+   }, 600);
 }
 
-const file = document.getElementById('input').files[0]
 
 document.querySelector('#input').addEventListener('change', (event) => {
     const file = event.target.files[0];

@@ -800,7 +800,7 @@ header .container {
 
 .instructioin-video {
     width: 100%;
-    height: auto;
+    height: 600px;
     border:2px solid #BE7B72;
     border-radius: 15px;
 }
@@ -1003,6 +1003,9 @@ header .container {
     .welcome-section .container {
         top: 46px;
     }
+    .instructioin-video {
+        height: 320px;
+    }
     .buttons-list {
         flex-direction: column;
         text-align: center;
@@ -1025,6 +1028,12 @@ header .container {
     .welcome-section .container {
         gap: 0;
         top: 140px;
+    }
+    .profile-account-settings {
+        flex-direction: column;
+    }
+    .delete-wrapper .info-block {
+        width: 75%;
     }
 }
 @media (max-width:440px) {
@@ -1059,5 +1068,13 @@ header .container {
         width: 140px;
         height: 140px;
     }
+    .review-h2 {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .info-wrapper p {
+        text-align: center;
+    }
+    .main-section form {width: 300px;}
 }
 
