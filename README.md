@@ -4,4 +4,4 @@ The website was made to count automatically stars on night sky👏<br>
 
 [![Press me to check](https://img.shields.io/badge/-PressMe-4CAF50?style=for-the-badge&logo=appveyor)](https://dilemka2.github.io/Pizza-FrontEnd-BackEnd/)
 
-<img src='img/brightstar-preview.png'>
+<img src='public/img/brightstar-preview.png'>
