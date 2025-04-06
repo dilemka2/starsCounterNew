@@ -1,5 +1,5 @@
 // let host = 'http://localhost:10000';
-let host = 'https://starscounternew-1.onrender.com'
+let host = 'https://brightstar-gwjs.onrender.com'
 
 
 // making responsible menu 
